@@ -16,12 +16,13 @@ foreach ($data->items as $item) {
 
     $response = file_get_contents($videoUrl);
     $data = json_decode($response);
+    dump($data);
 
     $title = $item->snippet->title;
     $description = $data->items[0]->snippet->description;
     $thumbnail = $item->snippet->thumbnails->default->url;
 
-    echo "<h1>$title</h1>";
-    echo "<iframe width='800' height='600' src='https://www.youtube.com/embed/$videoID' allowfullscreen></iframe>";
-    echo "<p>$description</p>";
+    // echo "<h1>$title</h1>";
+    // echo "<iframe width='800' height='600' src='https://www.youtube.com/embed/$videoID' allowfullscreen></iframe>";
+    // echo "<p>$description</p>";
 }

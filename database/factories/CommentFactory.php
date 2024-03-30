@@ -16,10 +16,12 @@ class CommentFactory extends Factory
      */
     public function definition(): array
     {
+        $created_at = fake()->dateTimeBetween('-1 month');
+
         return [
             'content' => fake()->sentence,
-            'created_at' => fake()->dateTimeBetween('-1 month'),
-            'updated_at' => fake()->dateTimeBetween('-1 month'),
+            'created_at' => $created_at,
+            'updated_at' => $created_at,
         ];
     }
 }
