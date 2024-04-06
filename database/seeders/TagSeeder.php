@@ -14,6 +14,7 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
+        // Création d'une collection de tags
         $tags = collect([
             'Team Fortress 2',
             'Hacker Police',
@@ -22,6 +23,7 @@ class TagSeeder extends Seeder
             'Commentary',
         ]);
 
+        // Boucle sur la collection pour créer les tags avec le mass assignment
         $tags->each(fn($tag) => Tag::create([
             'name' => $tag,
             'slug' => Str::slug($tag),

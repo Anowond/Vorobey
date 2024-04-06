@@ -17,7 +17,8 @@ class CategorySeeder extends Seeder
         // Décalaration d'un tableau des différentes catégories, converties en collection
         // d'objets grâce au helper collect()
         $categories = collect([
-            'Vêtements et Accéssoires',
+            'Vêtements',
+            'Accéssoires',
             'Utilitaires',
             'Décorations',
         ]);

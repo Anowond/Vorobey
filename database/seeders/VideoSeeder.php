@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\Comment;
@@ -18,6 +19,7 @@ class VideoSeeder extends Seeder
     public function run(): void
     {
         $user = User::all();
+        $tags = Tag::all();
         $videoApiService = new VideoAPIService();
         $videosData = $videoApiService->getDataFromAPI();
 
@@ -29,11 +31,17 @@ class VideoSeeder extends Seeder
                 'name' => $name,
                 'slug' => Str::slug($name),
                 'description' => $video->snippet->description,
-                'thumbnail' => $video->snippet->thumbnails->default->url,
-                'url' => 'https://www.youtube.com/watch?v=' . $video->id,
+                'thumbnail' => $video->snippet->thumbnails->maxres->url,
+                'url' => 'https://www.youtube.com/embed/' . $video->id,
                 'created_at' => $video->snippet->publishedAt,
                 'updated_at' => $video->snippet->publishedAt,
             ]);
+
+            // Récupérer les tags des descriptions via une RegExp
+            if (preg_match('/^#.*$/m', $newVideo->description, $tagList)) {
+                $tagList = implode('#',$tagList);
+                $newVideo->tags()->attach($tagList);
+            }
 
             // Créer des commentaires pour la vidéo
             Comment::factory(rand(1, 5))->create([

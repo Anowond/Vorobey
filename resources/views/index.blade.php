@@ -1,52 +1,60 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<x-layout title='Acceuil'>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Vorobey') }}</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-</head>
+    <section class="main container mt-5 fs-5">
+        <div class="row"></div>
+        <h1 class="text-center py-2">Welcome to my website !</h1>
+        <p class="roboto text-center">What is good everyone, it's your russian guy Vorobey here, and today i present to
+            you....</br>
+            <span class="fw-bolder tf2">MY OWN WEBSITE !</span>
+        </p>
+        <p class="py-2 roboto text-center">In this one, you will be able to find all my work, such as :</p>
+    </section>
 
-<body class="container col-12 py-2">
-    <header>
-        <nav class="navbar navbar-expand-lg bg-warning rounded border">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Vorobey</a>
-                <img class="navbar-toggler w-25 border-0 rounded-circle" src="/img/icon.jpg" alt="logo du createur" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation" />
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
+    <section class="my-5">
+        <div class="container">
+            <div class="row align-items-strech">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100 text-light">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title text-center py-3">TF2 videos</h5>
+                            <p class="card-text">It's in this section that you can see my videos on Team Fortress 2, if
+                                you want to see cheaters getting clapped or see me attempt some challenges, click on
+                                this button!</p>
+                            <a class="btn btn-card" href="{{ route('videos') }}">My videos</a>
+                        </div>
+                        <img src="/img/tf2-camera.jpg" class="card-img-bottom card-img img-fluid rounded-0"
+                            alt="a picture of a medic from team fortress 2 game, holding a camera">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100 text-light">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title text-center py-3">SoundCloud Sounds</h5>
+                            <p class="card-text">Yes ! I also do music! I even use some of my samples for my
+                                videos.</br>
+                                So if you are looking for some good music while destroying some crying cheaters, click
+                                on dat button below</p>
+                            <button class="btn btn-card ">My Music</button>
+                        </div>
+                        <img src="/img/tf2-music.png" class="card-img-bottom card-img img-fluid rounded-0"
+                            alt="...">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100 text-light">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title text-center py-3">Shop</h5>
+                            <p class="card-text">Have you ever dreamed of having your own Police hacker cap? Or sip a
+                                good vodka from a Vorobey mug? So click on dat button and make your dreams come true!
+                            </p>
+                            <a class="btn btn-card" href="{{ route('shop') }}">My shop</a>
+                        </div>
+                        <img src="/img/tf2-shop.jpg" class="card-img-bottom card-img img-fluid rounded-0"
+                            alt="...">
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </section>
 
-        <section class="my-2">
-
-        </section>
-        <section class="my-2">
-
-        </section>
-        <section class="my-2">
-
-        </section>
-
-    <footer class="my-2 bg-warning">
-
-    </footer>
-</body>
-
-
-</html>
+</x-layout>
