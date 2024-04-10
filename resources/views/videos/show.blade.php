@@ -1,4 +1,4 @@
-<x-layout title='{{$video->name}}'>
+<x-default-layout title='{{$video->name}}'>
 
     <section class="my-5 container">
         <h1 class="text-center py-3">{{$video->name}}</h1>
@@ -24,4 +24,4 @@
         </div>
     </section>
 
-</x-layout>
+</x-default-layout>

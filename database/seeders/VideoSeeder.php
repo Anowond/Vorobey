@@ -38,9 +38,20 @@ class VideoSeeder extends Seeder
             ]);
 
             // Récupérer les tags des descriptions via une RegExp
-            if (preg_match('/^#.*$/m', $newVideo->description, $tagList)) {
-                $tagList = implode('#',$tagList);
-                $newVideo->tags()->attach($tagList);
+            preg_match('/^#.*$/m', $newVideo->description, $matches);
+            $tags = $matches[0];
+            // Traitement des tags, mise en tableau, retrait du signe #, retrait d'un indice en trop
+            $tags = explode('#', $matches[0]);
+            $tags = array_slice($tags, 1);
+            // Traitement et affectation des tags
+            foreach ($tags as $tag) {
+                // Création du tag s'il n'existe pas
+                $tag = Tag::firstOrCreate([
+                    'name' => $tag,
+                    'slug' => Str::slug($tag),
+                ]);
+                // Affectation du tag
+                $newVideo->tags()->attach($tag->id);
             }
 
             // Créer des commentaires pour la vidéo

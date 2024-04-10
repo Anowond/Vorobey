@@ -11,6 +11,8 @@ class Video extends Model
 {
     use HasFactory;
 
+    protected $with = ['tags'];
+
     public function getRouteKeyName(): string
     {
         return 'slug';

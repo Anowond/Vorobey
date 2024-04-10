@@ -1,4 +1,4 @@
-<x-layout title='Acceuil'>
+<x-default-layout title='Acceuil'>
 
     <section class="main container mt-5 fs-5">
         <div class="row"></div>
@@ -57,4 +57,4 @@
         </div>
     </section>
 
-</x-layout>
+</x-default-layout>
