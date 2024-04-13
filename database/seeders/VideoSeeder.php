@@ -18,7 +18,7 @@ class VideoSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::all();
+        $users = User::all();
         $tags = Tag::all();
         $videoApiService = new VideoAPIService();
         $videosData = $videoApiService->getDataFromAPI();
@@ -55,10 +55,13 @@ class VideoSeeder extends Seeder
             }
 
             // Créer des commentaires pour la vidéo
-            Comment::factory(rand(1, 5))->create([
-                'video_id' => $newVideo->id,
-                'user_id' => $user->random(),
-            ]);
+            $numberComments = rand(1, 5);
+            for ($i = 0; $i < $numberComments; $i++) {
+                Comment::factory()->create([
+                    'video_id' => $newVideo->id,
+                    'user_id' => $users->random()->id,
+                ]);
+            }
         }
     }
 }

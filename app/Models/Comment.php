@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Comment extends Model
 {
     use HasFactory;
+    protected $with = ['user'];
+    protected $fillable = [
+        'content',
+        'user_id',
+        'video_id',
+    ];
 
     public function video(): BelongsTo
     {

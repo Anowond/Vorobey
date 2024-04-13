@@ -8,7 +8,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="tf2">
+<body class="tf2" x-data>
     <header class='sticky-sm-top sticky-sm-bottom'>
         <nav class="navbar w-100 rounded-lg">
             <div class="container-fluid">
@@ -30,7 +30,7 @@
                                 <a class="nav-link" href="{{ route('home') }}">My Account</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href=""
+                                <a class="nav-link" href="{{ route('logout') }}"
                                     @click.prevent="$refs.logout.submit()">logout</a>
                             </li>
                             <form x-ref='logout' action="{{ route('logout') }}" method="post" class="invisible">
