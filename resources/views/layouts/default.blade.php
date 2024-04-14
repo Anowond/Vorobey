@@ -29,6 +29,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">My Account</a>
                             </li>
+                            @if (Auth::user()->isAdmin())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.video.index') }}">Administration</a>
+                                </li>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}"
                                     @click.prevent="$refs.logout.submit()">logout</a>

@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
@@ -25,3 +26,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 Route::patch('/home', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+
+Route::resource('/admin/videos', AdminController::class)->except('create', 'show')->names('admin.video')->middleware('admin');
