@@ -8,8 +8,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="tf2" x-data>
-    <header class='sticky-sm-top sticky-sm-bottom'>
+<body class="tf2" x-data="{ isLargeScreen: false }" x-init="isLargeScreen = window.innerWidth > 768"
+    @resize.window="isLargeScreen = window.innerWidth > 768; console.log('isLargeScreen:', isLargeScreen)">
+    <header :class="{ 'sticky-top': !isLargeScreen }">
         <nav class="navbar w-100 rounded-lg">
             <div class="container-fluid">
                 <a class="navbar-brand tf2 fs-4" href="{{ route('index') }}">Vorobey.com</a>
@@ -55,7 +56,11 @@
 
     {{ $slot }}
 
-    <section class="footer mt-4 sticky-bottom">
+    <footer
+        :class="{
+            'footer mt-4 sticky-bottom': !isLargeScreen,
+            'footer mt-4': isLargeScreen,
+        }">
         <h2 class="text-center tf2 py-2">
             My Socials
         </h2>
@@ -77,7 +82,7 @@
                 </ul>
             </div>
         </div>
-    </section>
+    </footer>
 </body>
 
 </html>

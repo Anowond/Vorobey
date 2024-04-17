@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Video;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -29,7 +30,10 @@ class AdminController extends Controller
      */
     public function edit(Video $video)
     {
-        //
+        return view('admin.edit', [
+            'video' => $video,
+            'tags' => Tag::orderBy('name')->get(),
+        ]);
     }
 
     /**
