@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\videostatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,7 +12,12 @@ class Video extends Model
 {
     use HasFactory;
 
+    // Chargement des relations (Eager Loading)
     protected $with = ['tags'];
+    // Autorisation du mass assignment sur les champs
+    protected $fillable = [
+        'title','slug', 'url', 'description', 'thumbnail','status','tags',
+    ];
 
     public function getRouteKeyName(): string
     {
@@ -27,4 +33,6 @@ class Video extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+
 }

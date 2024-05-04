@@ -4,11 +4,11 @@
         <select class="form-select" id="{{ $id }}" name="{{ $name . ($multiple ? '[]' : '') }}"
             @if ($multiple) multiple="true" @endif>
             @foreach ($list as $item)
-            <option value="{{ $item->{$optionsValues} }}"
-                @selected($valueIsCollection ? $value->contains($item->{$optionsValues}) : $item->{$optionsValues} == $value)>
-                {{ $item->{$optionsTexts} }}
-            </option>
-        @endforeach
+                <option value="{{ $item->{$optionsValues} }}"
+                    {{ ($valueIsCollection ? $value->contains($item->{$optionsValues}) : $item->{$optionsValues} == $value) ? 'selected' : '' }}>
+                    {{ $item->{$optionsTexts} }}
+                </option>
+            @endforeach
         </select>
     </div>
     <div @class([

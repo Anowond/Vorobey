@@ -2,10 +2,10 @@
     <section class="container my-5">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             @foreach ($videos as $video)
-                @if ($video->status == 1)
+                @if ($video->status == 'Published')
                     <div class="col">
                         <div class="card h-100">
-                            <img src="{{ $video->thumbnail }}" class="card-img-top" alt="{{ $video->name }}">
+                            <img src="{{ str_starts_with($video->thumbnail, 'http') ? $video->thumbnail : asset('storage/'. $video->thumbnail) }}" class="card-img-top" alt="{{ $video->name }}">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <h5 class="card-title py-3 text-center">{{ $video->name }}</h5>
                                 @if ($video->tags->isNotEmpty())
@@ -17,7 +17,9 @@
                                         @endforeach
                                     </div>
                                 @endif
-                                    <a href="{{ route('videos.show', ['video' => $video]) }}" style="text-decoration: none; color: var(--bs-gray-800)" class="btn btn-form mt-2">WATCH</a>
+                                <a href="{{ route('videos.show', ['video' => $video]) }}"
+                                    style="text-decoration: none; color: var(--bs-gray-800)"
+                                    class="btn btn-form mt-2">WATCH</a>
                             </div>
                         </div>
                     </div>
