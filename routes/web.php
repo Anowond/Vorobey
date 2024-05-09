@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\URL;
+use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
@@ -7,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\RegisterController;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -28,3 +31,7 @@ Route::patch('/home', [HomeController::class, 'updatePassword'])->name('updatePa
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
 Route::resource('/admin/videos', AdminController::class)->except('create', 'show')->names('admin.video')->middleware('admin');
+
+Route::get('/sitemap/videos', [SitemapController::class, 'videos'])->name('sitemap.videos');
+Route::get('/sitemap/videos/{video}', [SitemapController::class, 'show'])->name('sitemap.show');
+Route::get('/sitemap/index', [SitemapController::class, 'index'])->name('sitemap.index');

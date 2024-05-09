@@ -27,7 +27,7 @@ class VideosAPIServiceTest extends TestCase
         $this->assertIsArray($cachedVideos);
 
         // Afficher le contenu mis en cache
-        dd($cachedVideos);
+        dump($cachedVideos);
 
     }
 }

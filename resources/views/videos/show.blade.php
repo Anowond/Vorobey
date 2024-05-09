@@ -1,5 +1,10 @@
 <x-default-layout title='{{ $video->name }}'>
 
+    <div class="container d-flex justify-content-center">
+        <a href="{{ route('videos') }}" style="text-decoration: none; color: var(--bs-gray-800)"
+        class="btn btn-form mt-3">Back to videos</a>
+    </div>
+
     <section class="my-5 container">
         <h1 class="text-center py-3">{{ $video->name }}</h1>
         <div class="row">

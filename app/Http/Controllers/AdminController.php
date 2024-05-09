@@ -46,7 +46,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(VideoRequest $request, Video $video)
+    public function update(VideoRequest $request, Video $video): RedirectResponse
     {
         // Récupération des données validées depuis la requête personnalisée
         $validated = $request->validated();

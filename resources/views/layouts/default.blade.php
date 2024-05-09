@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 
 <head>
     <meta charset="utf-8">
@@ -8,8 +8,8 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="tf2" x-data="{ isLargeScreen: false }" x-init="isLargeScreen = window.innerWidth > 768"
-    @resize.window="isLargeScreen = window.innerWidth > 768; console.log('isLargeScreen:', isLargeScreen)">
+<body class="tf2 h-100 d-flex flex-column" x-data="{ isLargeScreen: false }" x-init="isLargeScreen = window.innerWidth > 768"
+    @resize.window="isLargeScreen = window.innerWidth > 768">
     <header :class="{ 'sticky-top': !isLargeScreen }">
         <nav class="navbar w-100 rounded-lg">
             <div class="container-fluid">
@@ -54,7 +54,9 @@
         </div>
     @endif
 
-    {{ $slot }}
+    <div class="flex-grow-1">
+        {{ $slot }}
+    </div>
 
     <footer
         :class="{
@@ -68,16 +70,20 @@
             <div class="row">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-brands fa-discord fa-2x"></i></a>
+                        <a class="nav-link" href="https://discord.com/invite/EMZhDXV" target="_blank"
+                            rel="noopener noreferrer"><i class="fa-brands fa-discord fa-2x"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-brands fa-steam fa-2x"></i></a>
+                        <a class="nav-link" href="https://steamcommunity.com/groups/VorobeysGroup" target="_blank"><i
+                                class="fa-brands fa-steam fa-2x"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-brands fa-twitch fa-2x"></i></a>
+                        <a class="nav-link" href="https://www.twitch.tv/vorobey69" target="_blank"><i
+                                class="fa-brands fa-twitch fa-2x"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-brands fa-youtube fa-2x"></i></a>
+                        <a class="nav-link" href="https://www.youtube.com/@Vorobey69/featured" target="_blank"
+                            rel="noopener noreferrer"><i class="fa-brands fa-youtube fa-2x"></i></a>
                     </li>
                 </ul>
             </div>
