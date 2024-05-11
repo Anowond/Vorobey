@@ -26,8 +26,5 @@ class VideosAPIServiceTest extends TestCase
         $this->assertNotEmpty($cachedVideos);
         $this->assertIsArray($cachedVideos);
 
-        // Afficher le contenu mis en cache
-        dump($cachedVideos);
-
     }
 }

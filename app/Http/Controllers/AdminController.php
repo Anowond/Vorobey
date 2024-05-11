@@ -53,12 +53,28 @@ class AdminController extends Controller
 
         // Traitement du thumbnail
         if (isset($validated['thumbnail'])) {
+
+            // Traitement du thumbnail en cas d'URL
+            if (filter_var($validated['thumbnail'], FILTER_VALIDATE_URL)) {
+                // Téléchargement et stockage de l'image
+                $thumbnail = file_get_contents($validated['thumbnail']);
+                // generation d'un nom de fichier unique
+                $filename = uniqid() . '.jpg';
+                // Stockage de l'image
+                $path = '/thumbnails/' . $filename;
+                Storage::put($path, $thumbnail);
+                // Mise a jour du thumbnail
+                $validated['thumbnail'] = $path;
+            } else {
+                // Mise a jour du thumbnail
+                $validated['thumbnail'] = $validated['thumbnail']->store('thumbnails');
+            }
+
             if (isset($video->thumbnail)) {
                 // Suppression du thumbnail existant
                 Storage::delete($video->thumbnail);
             }
-            // Mise a jour du thumbnail
-            $validated['thumbnail'] = $validated['thumbnail']->store('thumbnails');
+
         }
 
         // Isoler les tags du tableau à passer dans la méthode d'update
@@ -78,8 +94,15 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Video $video, Request $request)
+    public function destroy(Video $video)
     {
-        //
+        // Supression du thumbnail associé a la video
+        Storage::delete($video->thumbnail);
+
+        // Supression de la video
+        $video->delete();
+
+        // Redirection vers la page d'édition avec une variable de session falsh
+        return redirect()->route('admin.video.index')->withStatus('Video deleted successfully !');
     }
 }

@@ -49,4 +49,26 @@ class VideoController extends Controller
 
         return redirect()->back()->withStatus('Comment added !');
     }
+
+    public function store(Request $request)
+    {
+
+
+        $validated = $request->validate([
+            'video_id' => ['required', 'unique:videos'],
+            'name' => ['required','string','max:255'],
+            'slug' => ['required','string','max:255'],
+            'description' => ['required','string'],
+            'url' => ['required','url'],
+            'thumbnail' => ['required'],
+            'status' => ['required', 'in:Published,Unpublished,Archived'],
+            'tags' => ['array', 'exists:tags,id'],
+        ]);
+
+        $video = Video::create($validated);
+
+        $video->tags()->sync($validated['tags'] ?? []);
+
+        return redirect()->route('videos')->withStatus('Video added successfully !');
+    }
 }
