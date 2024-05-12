@@ -54,21 +54,8 @@ class AdminController extends Controller
         // Traitement du thumbnail
         if (isset($validated['thumbnail'])) {
 
-            // Traitement du thumbnail en cas d'URL
-            if (filter_var($validated['thumbnail'], FILTER_VALIDATE_URL)) {
-                // Téléchargement et stockage de l'image
-                $thumbnail = file_get_contents($validated['thumbnail']);
-                // generation d'un nom de fichier unique
-                $filename = uniqid() . '.jpg';
-                // Stockage de l'image
-                $path = '/thumbnails/' . $filename;
-                Storage::put($path, $thumbnail);
-                // Mise a jour du thumbnail
-                $validated['thumbnail'] = $path;
-            } else {
-                // Mise a jour du thumbnail
-                $validated['thumbnail'] = $validated['thumbnail']->store('thumbnails');
-            }
+            // Mise a jour du thumbnail
+            $validated['thumbnail'] = $validated['thumbnail']->store('thumbnails');
 
             if (isset($video->thumbnail)) {
                 // Suppression du thumbnail existant

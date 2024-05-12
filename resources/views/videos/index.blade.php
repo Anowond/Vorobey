@@ -1,6 +1,6 @@
 <x-default-layout title='Videos'>
 
-    <section class="container my-5 text-center border rounded p-3 bg-secondary text-light">
+    <section class="container my-5 text-center rounded p-3">
         <h2>Welcome to video section</h2>
         <p>here, you can see all vidéos i made on my Youtube channel; you can clic on tags on each vidéo card for filter the
             page, and see only videos related on this tag.</br>

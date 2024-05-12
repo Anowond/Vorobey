@@ -1,7 +1,7 @@
 <x-default-layout title="Administration">
     <div class="my-4 container text-center" style="color: var(--bs-gray-800)">
         <h1>Videos</h1>
-        <p>Administration videos inteface, here, admins can modify and publish/publish videos.</p>
+        <p>Administration videos inteface, here, admins can modify and publish/unpublish videos.</p>
     </div>
     <table class="table container table-responsive table-bordered table-striped table-primary my-5">
         <thead>
@@ -23,16 +23,7 @@
                         <a href="{{ route('admin.video.edit', ['video' => $video]) }}"
                             style="text-decoration: none; color: var(--bs-gray-800)" class="btn btn-form mt-2">Edit</a>
                     </th>
-                    <th scope="row" class="text-center" style="color: var(--bs-gray-800)">
-                        <a href="{{ route('admin.video.destroy', ['video' => $video]) }}"
-                            style="text-decoration: none; color: var(--bs-gray-800)" class="btn btn-form mt-2"
-                            @click.prevent="$refs.deleteForm.submit()">Delete</a>
-                        <form x-ref="deleteForm" action="{{ route('admin.video.destroy', ['video' => $video]) }}"
-                            method="post">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                    </th>
+
                 </tr>
             @endforeach
         </tbody>

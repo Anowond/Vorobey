@@ -49,7 +49,7 @@
         </nav>
     </header>
     @if (session('status'))
-        <div class="container border-2 rounded bg-success">
+        <div class="container border-2 rounded bg-success mt-3">
             <p class="mt-3 text-light text-center py-3">{{ session('status') }}</p>
         </div>
     @endif

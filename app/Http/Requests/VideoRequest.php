@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Roles;
+use App\Enums\videostatus;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -15,14 +17,16 @@ class VideoRequest extends FormRequest
      */
     public function rules(): array
     {
-        $status = ['Published', 'Unpublished', 'Archived'];
+        // Récupération des status possibles en fonction de l'énumération Roles.
+        $status = collect(videostatus::cases())->map(fn($status) => $status->value)->implode(',');
+
         return [
             'name' => ['required','string','between:3,255'],
             'slug' => ['required', 'string', 'between:3,255', Rule::unique('videos')->ignore($this->video)],
             'url' => ['required','url'],
             'description' => ['required','string'],
             'thumbnail' => ['required'],
-            'status' => ['required', 'in:' . implode(',', $status)],
+            'status' => ['required', 'in:' . $status],
             'tags' => ['array', 'exists:tags,id'],
         ];
     }
