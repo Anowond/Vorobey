@@ -26,13 +26,4 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function sound(): BelongsTo
-    {
-        return $this->belongsTo(Sound::class);
-    }
 }
