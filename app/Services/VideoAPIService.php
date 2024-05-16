@@ -11,13 +11,6 @@ class VideoAPIService
     public function getDataFromAPI()
     {
 
-        // Si le cache est vide, alors on fait un appel API
-        if (Cache::has('videos')) {
-
-            return Cache::get('videos');
-
-        } else {
-
             $apiKey = 'AIzaSyAR6DEibOoxaZpRwzkypwtt9ZtbFmSOwVE';
             $channelID = 'UCvSfxFYLFImHcmi9BQMwKQw';
 
@@ -40,10 +33,6 @@ class VideoAPIService
                 }
             }
 
-            // Mise en cache pour 24h
-            Cache::put('videos', $videos, 86400);
-
-            return Cache::get('videos');
-        }
+        return $videos;
     }
 }
