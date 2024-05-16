@@ -15,6 +15,7 @@ class VideoTest extends TestCase
     use RefreshDatabase;
     public function test_a_video_can_be_added_to_the_database(): void
     {
+        
         // Envoi dune requête POST a la route /videos
         $response = $this->post('/videos', [
             'video_id' => fake()->randomDigit(),
