@@ -16,14 +16,14 @@ class VideoSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(VideoAPIService $service): void
     {
-        // Récupération des utilisateurs et des tags
+        // Récupération des utilisateurs
         $users = User::all();
-        $tags = Tag::all();
-        // Récupération des vidéos en cache
-        $videoApiService = new VideoAPIService();
-        $videosData = $videoApiService->getDataFromAPI();
+
+        // Récupération des vidéos
+        $videosData = $service->getDataFromAPI();
+
         // Récupération des vidéos éxistantes
         $existingVideos = Video::pluck('video_id')->toArray();
 
@@ -31,6 +31,7 @@ class VideoSeeder extends Seeder
             $video = $video->items[0];
             $name = $video->snippet->title;
             $videoID = $video->id;
+            $thumbnail = $video->snippet->thumbnails;
 
             // Si la vidéo n'existe pas dans le tableau issu de la base de données, on la créée
             if(!in_array($videoID, $existingVideos)) {
@@ -39,7 +40,8 @@ class VideoSeeder extends Seeder
                     'name' => $name,
                     'slug' => Str::slug($name),
                     'description' => $video->snippet->description,
-                    'thumbnail' => $video->snippet->thumbnails->maxres->url,
+                    'thumbnail' => $thumbnail->maxres->url ?? $thumbnail->standard->url ??
+                    $thumbnail->high->url ?? $thumbnail->medium->url ?? $thumbnail->default->url,
                     'url' => 'https://www.youtube.com/embed/' . $videoID,
                     'status' => 'published',
                     'created_at' => $video->snippet->publishedAt,
@@ -47,11 +49,14 @@ class VideoSeeder extends Seeder
                 ]);
 
                 // Récupérer les tags des descriptions via une RegExp
+                // Récherche sur toutes les lignes de la description toutes les lignes commençant par #
                 preg_match('/^#.*$/m', $newVideo->description, $matches);
                 $tags = $matches[0];
-                // Traitement des tags, mise en tableau, retrait du signe #, retrait d'un indice en trop
-                $tags = explode('#', $matches[0]);
+
+                // Traitement des tags, mise en tableau, retrait du signe #, retrait d'un indice à vide
+                $tags = explode('#', $tags);
                 $tags = array_slice($tags, 1);
+
                 // Traitement et affectation des tags
                 foreach ($tags as $tag) {
                     // Création du tag s'il n'existe pas
@@ -63,7 +68,7 @@ class VideoSeeder extends Seeder
                     $newVideo->tags()->attach($tag->id);
                 }
 
-                // Créer des commentaires pour la vidéo
+                // Créer entre 1 et 5 commentaires pour la vidéo
                 $numberComments = rand(1, 5);
                 for ($i = 0; $i < $numberComments; $i++) {
                     Comment::factory()->create([

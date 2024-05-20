@@ -11,27 +11,27 @@ class VideoAPIService
     public function getDataFromAPI()
     {
 
-            $apiKey = 'AIzaSyAR6DEibOoxaZpRwzkypwtt9ZtbFmSOwVE';
-            $channelID = 'UCvSfxFYLFImHcmi9BQMwKQw';
+        $apiKey = 'AIzaSyAR6DEibOoxaZpRwzkypwtt9ZtbFmSOwVE';
+        $channelID = 'UCvSfxFYLFImHcmi9BQMwKQw';
 
-            $channelUrl = "https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelID&part=snippet,id&order=date&maxResults=50";
-            $response = file_get_contents($channelUrl);
-            $data = json_decode($response);
+        $channelUrl = "https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelID&part=snippet,id&order=date&maxResults=50";
+        $response = file_get_contents($channelUrl);
+        $data = json_decode($response);
 
-            $videos = [];
+        $videos = [];
 
-            foreach ($data->items as $item) {
-                if ($item->id->kind === "youtube#video") {
-                    $videoID = $item->id->videoId;
-                    $videoUrl = "https://www.googleapis.com/youtube/v3/videos?id=$videoID&key=$apiKey&part=snippet";
+        foreach ($data->items as $item) {
+            if ($item->id->kind === "youtube#video") {
+                $videoID = $item->id->videoId;
+                $videoUrl = "https://www.googleapis.com/youtube/v3/videos?id=$videoID&key=$apiKey&part=snippet";
 
-                    $videoResponse = file_get_contents($videoUrl);
-                    $videoData = json_decode($videoResponse);
+                $videoResponse = file_get_contents($videoUrl);
+                $videoData = json_decode($videoResponse);
 
-                    $videos[] = $videoData;
+                $videos[] = $videoData;
 
-                }
             }
+        }
 
         return $videos;
     }

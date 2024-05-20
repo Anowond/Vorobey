@@ -14,9 +14,9 @@
         <nav class="navbar w-100 rounded-lg">
             <div class="container-fluid">
                 <a class="navbar-brand tf2 fs-4" href="{{ route('index') }}">Vorobey.com</a>
-                <img src="/img/icon.jpg" class="logo navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <img src="/img/icon.jpg" alt="channel logo" class="logo navbar-toggler border-0" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <div class='collapse navbar-collapse justify-content-end' id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         @guest

@@ -15,7 +15,7 @@ class Video extends Model
     // Chargement des relations (Eager Loading)
     protected $with = ['tags'];
     // Autorisation du mass assignment sur les champs
-    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
+    protected $guarded = ['id'];
 
     public function getRouteKeyName(): string
     {
