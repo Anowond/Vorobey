@@ -54,6 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    // Vérifie si l'utilisateur est un admin
     public function isAdmin(): bool
     {
         return $this->role === Roles::Admin->value;

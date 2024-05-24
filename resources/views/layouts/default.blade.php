@@ -8,8 +8,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="tf2 h-100 d-flex flex-column" x-data="{ isLargeScreen: false }" x-init="isLargeScreen = window.innerWidth > 768"
-    @resize.window="isLargeScreen = window.innerWidth > 768">
+<body class="tf2 min-vh-100 d-flex flex-column" x-data="{ isLargeScreen: false }"
+    x-init= "isLargeScreen = window.innerWidth >= 768"
+    @resize.window="isLargeScreen = window.innerWidth >= 768">
     <header :class="{ 'sticky-top': !isLargeScreen }">
         <nav class="navbar w-100 rounded-lg">
             <div class="container-fluid">
@@ -53,11 +54,9 @@
             <p class="mt-3 text-light text-center py-3">{{ session('status') }}</p>
         </div>
     @endif
-
-    <div class="flex-grow-1">
+    <main class="flex-grow-1">
         {{ $slot }}
-    </div>
-
+    </main>
     <footer
         :class="{
             'footer mt-4 sticky-bottom': !isLargeScreen,

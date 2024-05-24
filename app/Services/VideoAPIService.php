@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Cache;
 
 class VideoAPIService
 {
+    // -----------------------------------------------------------------------------------------
+    // This method get videos data from the API Youtube Data API and return it on a array $video
+    // -----------------------------------------------------------------------------------------
     public function getDataFromAPI()
     {
-
         $apiKey = 'AIzaSyAR6DEibOoxaZpRwzkypwtt9ZtbFmSOwVE';
         $channelID = 'UCvSfxFYLFImHcmi9BQMwKQw';
 

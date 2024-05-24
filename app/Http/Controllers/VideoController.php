@@ -14,6 +14,7 @@ class VideoController extends Controller
 {
     public function index(): View
     {
+        // Récupére toutes les vidéos, par date de création avec une pagination
         $videos = Video::latest()->paginate(12);
         return view('videos.index', ['videos' => $videos]);
     }

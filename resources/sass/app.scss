@@ -10,29 +10,19 @@
 // Font Awesome
 @import "/resources/fontawesome-free-6.5.1-web/css/all.css";
 
-@font-face
- {
+// Police TF2
+@font-face {
     font-family: 'tf2';
     src: url('./../fonts/tf2/tf2build.ttf');
- }
-
-@font-face
- {
-    font-family: 'Roboto-Mono';
-    src: url('./../fonts/Roboto_Mono/static/RobotoMono-Bold.ttf');
- }
-
-[x-cloak] {
-    display: none !important;
 }
 
 .tf2 {
     font-family: 'tf2';
- }
+}
 
- .roboto {
-    font-family: 'Roboto-Mono';
- }
+[x-cloak] {
+    display: none !important;
+}
 
 header {
     background-color: var(--bs-orange) !important;
@@ -61,7 +51,6 @@ header {
     border-color: white;
     transition: 0.5s;
 }
-
 .btn-card:hover {
     color: var(--bs-gray-900);
     background-color: white;
@@ -131,5 +120,3 @@ iframe {
 .custom-checkbox {
     border: 1px solid var(--bs-gray-500);
 }
-
-

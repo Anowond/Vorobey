@@ -23,7 +23,6 @@
                         <a href="{{ route('admin.video.edit', ['video' => $video]) }}"
                             style="text-decoration: none; color: var(--bs-gray-800)" class="btn btn-form mt-2">Edit</a>
                     </th>
-
                 </tr>
             @endforeach
         </tbody>

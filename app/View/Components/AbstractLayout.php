@@ -15,4 +15,8 @@ abstract class AbstractLayout extends Component
     {
         $this->title = config('app.name') . ($title ? " | $title" : "");
     }
+    public function render(): View|Closure|string
+    {
+        return view('layouts.default');
+    }
 }

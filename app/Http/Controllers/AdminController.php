@@ -18,7 +18,8 @@ class AdminController extends Controller
      */
     public function index(): View
     {
-        return view('admin.index', ['videos' => Video::without('tags')->latest()->paginate(20)]);
+        return view('admin.index',
+        ['videos' => Video::without('tags')->latest()->paginate(20)]);
     }
 
     /**
@@ -53,15 +54,12 @@ class AdminController extends Controller
 
         // Traitement du thumbnail
         if (isset($validated['thumbnail'])) {
-
             // Mise a jour du thumbnail
             $validated['thumbnail'] = $validated['thumbnail']->store('thumbnails');
-
             if (isset($video->thumbnail)) {
                 // Suppression du thumbnail existant
                 Storage::delete($video->thumbnail);
             }
-
         }
 
         // Isoler les tags du tableau à passer dans la méthode d'update
@@ -70,10 +68,8 @@ class AdminController extends Controller
 
         // Mise à jour la vidéo
         $video->update($validated);
-
         // Mise à jour des tags avec la méthode sync
         $video->tags()->sync($tags);
-
         // Redirection vers la page d'édition avec une variable de ssession flash
         return redirect()->route('admin.video.edit', $video)->withStatus('Video updated !');
     }

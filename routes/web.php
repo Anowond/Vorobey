@@ -35,7 +35,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 Route::patch('/home', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
 // Admin
-Route::resource('/admin/videos', AdminController::class)->except('create', 'show')->names('admin.video')->middleware('admin');
+Route::resource('/admin/videos', AdminController::class)->except('create', 'show')
+->names('admin.video')->middleware('admin');
 
 // Sitemap
 Route::get('/sitemap/videos', [SitemapController::class, 'videos'])->name('sitemap.videos');

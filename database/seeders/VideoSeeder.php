@@ -20,10 +20,8 @@ class VideoSeeder extends Seeder
     {
         // Récupération des utilisateurs
         $users = User::all();
-
         // Récupération des vidéos
         $videosData = $service->getDataFromAPI();
-
         // Récupération des vidéos éxistantes
         $existingVideos = Video::pluck('video_id')->toArray();
 
