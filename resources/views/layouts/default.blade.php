@@ -56,7 +56,9 @@
     @endif
     <main class="flex-grow-1">
         {{ $slot }}
+    </div>
     </main>
+
     <footer
         :class="{
             'footer mt-4 sticky-bottom': !isLargeScreen,

@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 p-4 show_description">
-                <p>{!! nl2br(e($video->description)) !!}</p>
+                <article>{!! nl2br(e($video->description)) !!}</article>
             </div>
         </div>
     </section>

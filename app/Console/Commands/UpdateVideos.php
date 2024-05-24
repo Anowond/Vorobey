@@ -86,7 +86,6 @@ class UpdateVideos extends Command
                 }
             }
         }
-
         $this->info('Vidéos have been updated successfully !');
     }
 }

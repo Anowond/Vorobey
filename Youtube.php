@@ -4,7 +4,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 $apiKey = 'AIzaSyAR6DEibOoxaZpRwzkypwtt9ZtbFmSOwVE';
 $channelID = 'UCvSfxFYLFImHcmi9BQMwKQw';
-$channelUrl = "https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelID&part=snippet,id&order=date&maxResults=10";
+$channelUrl = "https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelID&part=snippet,id&order=date&maxresults=50";
 
 $response = file_get_contents($channelUrl);
 $data = json_decode($response);

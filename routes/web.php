@@ -24,7 +24,8 @@ Route::post('/videos/{video}/comment', [VideoController::class, 'comment'])->nam
 Route::post('/videos', [VideoController::class, 'store'])->name('videos.store');
 
 // Register & Login
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])
+->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
