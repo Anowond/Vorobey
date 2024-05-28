@@ -20,14 +20,11 @@ class VideoSeeder extends Seeder
     {
         // Récupération des utilisateurs
         $users = User::all();
-<<<<<<< HEAD
         // Récupération des vidéos en cache
         $videoApiService = new VideoAPIService();
         $videosData = $videoApiService->getDataFromAPI();
-=======
         // Récupération des vidéos
         $videosData = $service->getDataFromAPI();
->>>>>>> 88cfd73d217a0f5b06ce05a991b9dbd452c3dde8
         // Récupération des vidéos éxistantes
         $existingVideos = Video::pluck('video_id')->toArray();
 
@@ -78,7 +75,7 @@ class VideoSeeder extends Seeder
                     Comment::factory()->create([
                         'video_id' => $newVideo->id,
                         'user_id' => $users->random()->id,
-                    ])
+                    ]);
                 }
             }
         }

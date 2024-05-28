@@ -33,10 +33,9 @@ class UpdateVideos extends Command
     {
         // Récupération des utilisateurs
         $users = User::all();
-
         // Récupération des vidéos en cache
         $videosData = $service->getDataFromAPI();
-
+        dd($videosData);
         // Récupération des vidéos éxistantes
         $existingVideos = Video::pluck('video_id')->toArray();
 
