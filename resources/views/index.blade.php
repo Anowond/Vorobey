@@ -11,7 +11,7 @@
     </section>
 
     <section class="my-5">
-        <div class="container">
+        <div class="container ">
             <div class="row align-items-strech">
                 <div class="col mb-4">
                     <div class="card mb-3">
