@@ -1,5 +1,5 @@
 <x-default-layout title="Editing">
-    <form action="{{ route('admin.video.update', ['video' => $video]) }}"
+    <form action="{{ route('admin.update', ['video' => $video]) }}"
         method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')

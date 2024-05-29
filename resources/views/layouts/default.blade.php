@@ -32,7 +32,7 @@
                             </li>
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.video.index') }}">Administration</a>
+                                    <a class="nav-link" href="{{ route('admin') }}">Administration</a>
                                 </li>
                             @endif
                             <li class="nav-item">

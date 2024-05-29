@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\View\View;
 use App\Enums\videostatus;
@@ -18,16 +19,10 @@ class AdminController extends Controller
      */
     public function index(): View
     {
-        return view('admin.index',
-        ['videos' => Video::without('tags')->latest()->paginate(20)]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('admin.index', [
+            'videos' => Video::without('tags')->latest()->paginate(20),
+            'users' => User::latest()->paginate(20),
+        ]);
     }
 
     /**

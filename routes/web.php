@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\URL;
 use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Route;
@@ -36,8 +37,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 Route::patch('/home', [HomeController::class, 'updatePassword'])->name('updatePassword');
 
 // Admin
-Route::resource('/admin/videos', AdminController::class)->except('create', 'show')
-->names('admin.video')->middleware('admin');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('admin');
+// Admin videos
+Route::get('/admin/video/edit/{video}', [AdminController::class, 'edit'])->name('admin.edit.video')->middleware('admin');
+Route::patch('/admin/video/edit/{video}', [AdminController::class, 'update'])->name('admin.update')->middleware('admin');
+// Admin users
+Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('admin.edit.user')->middleware('admin');
+
 
 // Sitemap
 Route::get('/sitemap/videos', [SitemapController::class, 'videos'])->name('sitemap.videos');
