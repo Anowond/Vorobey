@@ -13,7 +13,7 @@
     <header :class="{ 'sticky-top': !isLargeScreen }">
         <nav class="navbar w-100 rounded-lg">
             <div class="container-fluid">
-                <a class="navbar-brand tf2 fs-4" href="{{ route('index') }}">Vorobey.com</a>
+                <a class="navbar-brand tf2 fs-4" href="{{ route('index') }}">Vorobeytf2.com</a>
                 <img src="/img/icon.jpg" alt="channel logo" class="logo navbar-toggler border-0" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

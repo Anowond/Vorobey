@@ -29,17 +29,14 @@ class UpdateVideos extends Command
     /**
      * Execute the console command.
      */
-    public function handle(VideoAPIService $service)
+    public function handle(VideoAPIService $videos)
     {
         // Récupération des utilisateurs
         $users = User::all();
-        // Récupération des vidéos en cache
-        $videosData = $service->getDataFromAPI();
-        dd($videosData);
         // Récupération des vidéos éxistantes
         $existingVideos = Video::pluck('video_id')->toArray();
 
-        foreach ($videosData as $video) {
+        foreach ($videos() as $video) {
             $video = $video->items[0];
             $name = $video->snippet->title;
             $videoID = $video->id;
