@@ -2,14 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 
 <head>
-        <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="tf2 min-vh-100 d-flex flex-column" x-data="{ isLargeScreen: false }"
-    x-init= "isLargeScreen = window.innerWidth >= 768"
+<body class="tf2 min-vh-100 d-flex flex-column" x-data="{ isLargeScreen: false }" x-init= "isLargeScreen = window.innerWidth >= 768"
     @resize.window="isLargeScreen = window.innerWidth >= 768">
     <header :class="{ 'sticky-top': !isLargeScreen }">
         <nav class="navbar w-100 rounded-lg">
@@ -56,7 +55,7 @@
     @endif
     <main class="flex-grow-1">
         {{ $slot }}
-    </div>
+        </div>
     </main>
 
     <footer
