@@ -14,21 +14,17 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 class VideoSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Gére le seeding de la base de données, en récupérant directement le retour de la méthode __invoke
+     * de VideoAPIService.
      */
-    public function run(VideoAPIService $service): void
+    public function run(VideoAPIService $videos): void
     {
         // Récupération des utilisateurs
         $users = User::all();
-        // Récupération des vidéos en cache
-        $videoApiService = new VideoAPIService();
-        $videosData = $videoApiService->getDataFromAPI();
-        // Récupération des vidéos
-        $videosData = $service->getDataFromAPI();
         // Récupération des vidéos éxistantes
         $existingVideos = Video::pluck('video_id')->toArray();
 
-        foreach ($videosData as $video) {
+        foreach ($videos() as $video) {
             $video = $video->items[0];
             $name = $video->snippet->title;
             $videoID = $video->id;

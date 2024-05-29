@@ -11,7 +11,7 @@ class VideoAPIService
     // -----------------------------------------------------------------------------------------
     // This method get videos data from the API Youtube Data API and return it on a array $video
     // -----------------------------------------------------------------------------------------
-    public function getDataFromAPI()
+    public function __invoke()
     {
         // Appel API
         $apiKey = env('API_KEY');
