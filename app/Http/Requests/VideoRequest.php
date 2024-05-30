@@ -17,7 +17,7 @@ class VideoRequest extends FormRequest
      */
     public function rules(): array
     {
-        // Récupération des status possibles en fonction de l'énumération Roles.
+        // Récupération des status possibles en fonction de l'énumération Status.
         $status = collect(videostatus::cases())->map(fn($status) => $status->value)->implode(',');
         return [
             'name' => ['required','string','between:3,255'],

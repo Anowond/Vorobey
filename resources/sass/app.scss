@@ -51,6 +51,7 @@ header {
     border-color: white;
     transition: 0.5s;
 }
+
 .btn-card:hover {
     color: var(--bs-gray-900);
     background-color: white;
@@ -66,7 +67,7 @@ header {
 
 .footer a:hover {
     color: white;
-    z-index: 99;
+    z-index: 90;
 }
 
 .pagination .page-link {
@@ -123,4 +124,8 @@ iframe {
 
 .hidden {
     display: none;
+}
+
+.modal-dialog {
+    top: 300px;
 }

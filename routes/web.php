@@ -40,10 +40,13 @@ Route::patch('/home', [HomeController::class, 'updatePassword'])->name('updatePa
 Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('admin');
 // Admin videos
 Route::get('/admin/video/edit/{video}', [AdminController::class, 'edit'])->name('admin.edit.video')->middleware('admin');
-Route::patch('/admin/video/edit/{video}', [AdminController::class, 'update'])->name('admin.update')->middleware('admin');
+Route::patch('/admin/video/edit/{video}', [AdminController::class, 'update'])->name('admin.update');
 // Admin users
-Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('admin.edit.user')->middleware('admin');
-
+Route::get('/admin/user/create', [UserController::class, 'showCreateUserForm'])->name('admin.user.showForm')->middleware('admin');
+Route::post('/admin/user/create', [UserController::class, 'store'])->name('admin.user.store');
+Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('admin.user.edit')->middleware('admin');
+Route::patch('/admin/user/edit/{user}', [UserController::class, 'update'])->name('admin.user.update');
+Route::delete('/admin/user/delete/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
 
 // Sitemap
 Route::get('/sitemap/videos', [SitemapController::class, 'videos'])->name('sitemap.videos');

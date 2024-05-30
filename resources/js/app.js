@@ -17,3 +17,4 @@ adminButton.addEventListener('click', () => {
         adminButton.textContent = "Switch to Users"
     }
 })
+
