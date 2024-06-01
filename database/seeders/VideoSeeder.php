@@ -40,7 +40,7 @@ class VideoSeeder extends Seeder
                     'thumbnail' => $thumbnail->maxres->url ?? $thumbnail->standard->url ??
                     $thumbnail->high->url ?? $thumbnail->medium->url ?? $thumbnail->default->url,
                     'url' => 'https://www.youtube.com/embed/' . $videoID,
-                    'status' => 'published',
+                    'status' => 'Published',
                     'created_at' => $video->snippet->publishedAt,
                     'updated_at' => $video->snippet->publishedAt,
                 ]);

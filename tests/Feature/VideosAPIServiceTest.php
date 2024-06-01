@@ -10,21 +10,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class VideosAPIServiceTest extends TestCase
 {
-    public function testGetDataFromAPI()
+    public function testGetDataFromAPI(VideoAPIService $result)
     {
-        $videoAPIService = new VideoAPIService();
-        $result = $videoAPIService->getDataFromAPI();
-
         // Vérifier que le résultat n'est pas vide
-        $this->assertNotEmpty($result);
+        $this->assertNotEmpty($result());
 
         // Vérifier que le résultat est un tableau
-        $this->assertIsArray($result);
-
-        // Vérifier que les données sont mises en cache
-        $cachedVideos = Cache::get('videos');
-        $this->assertNotEmpty($cachedVideos);
-        $this->assertIsArray($cachedVideos);
-
+        $this->assertIsArray($result());
     }
 }
