@@ -16,7 +16,7 @@ class VideoAPIService
         // Appel API
         $apiKey = env('API_KEY');
         $channelID = 'UCvSfxFYLFImHcmi9BQMwKQw';
-        $channelUrl = "https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelID&part=snippet,id&order=date&maxResults=50";
+        $channelUrl = "https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelID&part=snippet,id&order=date&maxResults=2";
         $response = file_get_contents($channelUrl);
         $data = json_decode($response);
 

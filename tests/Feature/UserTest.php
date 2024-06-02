@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_is_a_user_can_be_created(): void
+    public function test_is_a_user_can_be_created_by_an_admin(): void
     {
         // For see exceptions
         // $this->withoutExceptionHandling();
@@ -37,27 +37,23 @@ class UserTest extends TestCase
         ]);
     }
 
-    public function test_is_a_user_can_be_updated(): void
+    public function test_is_a_user_can_be_updated_by_an_admin(): void
     {
         // $this->withoutExceptionHandling();
-
         // Create an admin user
         $admin = User::factory()->create([
             'role' => 'admin',
         ]);
-
         // Create a user
         $user = User::factory()->create([
             'name' => 'Jean Dutest',
             'email' => 'dutest.jean@mail.com',
         ]);
-
         // Check if user is created
         $this->assertDatabaseHas('users', [
             'name' => 'Jean Dutest',
             'email' => 'dutest.jean@mail.com',
         ]);
-
         // Update the user name and email with a PATCH request
         $this
             ->actingAs($admin)
@@ -67,13 +63,11 @@ class UserTest extends TestCase
                 'role' => 'user',
             ])
             ->assertRedirect('admin');
-
         // Assert old user values is missing
         $this->assertDatabaseMissing('users', [
             'name' => 'Jean Dutest',
             'email' => 'dutest.jean@mail.com',
         ]);
-
         // Assert new values is here
         $this->assertDatabaseHas('users', [
             'name' => 'Jean Delessai',
@@ -81,7 +75,7 @@ class UserTest extends TestCase
         ]);
     }
 
-    public function test_is_a_user_can_be_deleted(): void
+    public function test_is_a_user_can_be_deleted_by_an_admin(): void
     {
         // Create an Admin user
         $admin = User::factory()->create([
@@ -103,6 +97,85 @@ class UserTest extends TestCase
         // Assert user is missing
         $this->assertDatabaseMissing('users', [
             'name' => 'jean Dutest',
+        ]);
+    }
+
+    public function test_is_a_user_can_be_created_by_a_user(): void
+    {
+        // Create a user
+        $user = User::factory()->create([
+            'role' => 'user',
+        ]);
+        // Create a request
+        $this
+            ->actingAs($user)
+            ->post(route('admin.user.store'), [
+                'name' => 'user test',
+                'email' => 'user.test@mail.com',
+                'password' => 'Passw0rd!',
+                'password_confirmation' => 'Passw0rd!',
+                'role' => 'user',
+            ])
+            ->assertRedirect(route('home'));
+        // Check if the record is missing on database
+        $this->assertDatabaseMissing('users', [
+            'email' => 'user.test@mail.com',
+        ]);
+    }
+
+    public function test_is_a_user_can_be_updated_by_a_user(): void
+    {
+        // $this->withoutExceptionHandling();
+        // Create an admin user
+        $user = User::factory()->create([
+            'role' => 'user',
+        ]);
+        // Create a user record
+        $record = User::factory()->create([
+            'name' => 'Jean Dutest',
+            'email' => 'dutest.jean@mail.com',
+        ]);
+        // Update the user name and email with a PATCH request
+        $this
+            ->actingAs($user)
+            ->patch(route('admin.user.update', ['user' => $record]), [
+                'name' => 'Jean Delessai',
+                'email' => 'delessai.jean@mail.fr',
+                'role' => 'user',
+            ])
+            ->assertRedirect(route('home'));
+        // Assert old record is sill here
+        $this->assertDatabaseHas('users', [
+            'name' => 'Jean Dutest',
+            'email' => 'dutest.jean@mail.com',
+        ]);
+        // Assert new values are missing
+        $this->assertDatabaseMissing('users', [
+            'name' => 'Jean Delessai',
+            'email' => 'delessai.jean@mail.fr',
+        ]);
+    }
+
+    public function test_is_a_user_can_be_deleted_by_an_user(): void
+    {
+        // Create a user
+        $user = User::factory()->create([
+            'role' => 'user',
+        ]);
+        // Create a user record
+        $record = User::factory()->create([
+            'name' => 'jean Dutest',
+            'email' => 'dutest.jean@mail.com',
+        ]);
+        // Send a DELETE request
+        $this
+        ->actingAs($user)
+        ->delete(route('admin.user.destroy', ['user' => $record]))
+        ->assertRedirect(route('home'));
+        // Assert user record is still here
+        $this->assertDatabaseHas('users', [
+            'name' => 'jean Dutest',
+            'email' => 'dutest.jean@mail.com',
         ]);
     }
 }
