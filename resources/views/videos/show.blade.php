@@ -44,7 +44,7 @@
             <div class="row my-4 mx-2">
                 @foreach ($video->comments as $comment)
                     <div class="d-flex rounded my-2 align-items-center" style="background: var(--bs-gray-500)">
-                        <img src="https://via.placeholder.com/120x120"
+                        <img src="{{ Gravatar::get($comment->user->email) }}"
                             alt="image de profil de {{ $comment->user->name }}" class="img-fluid rounded-circle" style="height: 50px">
                         <div class="ms-3 p-2">
                             <h6>{{ $comment->user->name }}</h6>
