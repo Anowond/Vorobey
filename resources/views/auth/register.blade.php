@@ -5,8 +5,7 @@
     <x-input name="password_confirmation" label="password confirmation" type="password" />
     <div class="mb-3 form-check col-8 offset-2">
         <input type="checkbox" class="form-check-input custom-checkbox" id="consent" name="consent">
-        <label class="form-check-label" for="consent">By checking this box, you agree that your data will be proceded
-            and stored for the purpose on this site.</label>
+        <label class="form-check-label" for="consent">By checking this box, you accept our <a href="{{route('policy')}}" target="_blank">Terms of policy</a></label>
         @error('consent')
             <div class='text-danger fs-6 mt-2'>
                 {{ $message }}
