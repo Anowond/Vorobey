@@ -1,4 +1,4 @@
-<x-default-layout title="Editing">
+<x-default-layout title="Edit User">
     <form action="{{ route('admin.user.update', ['user' => $user]) }}" method="post">
         @csrf
         @method('patch')
