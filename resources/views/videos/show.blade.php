@@ -2,7 +2,7 @@
 
     <div class="container d-flex justify-content-center">
         <a href="{{ route('videos') }}" style="text-decoration: none; color: var(--bs-gray-800)"
-        class="btn btn-form mt-3">Back to videos</a>
+            class="btn btn-form mt-3">Back to videos</a>
     </div>
 
     <section class="my-5 container">
@@ -23,7 +23,7 @@
         </div>
     </section>
 
-    <section class="container my-5 col-8">
+    <section class="container my-5">
         <div class="row">
             @auth
                 <form x-ref="formComment" action="{{ route('comment', ['video' => $video]) }}" method="post">
@@ -41,19 +41,19 @@
                 </form>
             @endauth
         </div>
-        <div class="row my-4">
-            @foreach ($video->comments as $comment)
-                <div class="d-flex rounded my-2 align-items-center" style="background: var(--bs-gray-500)">
-                    <img src="https://via.placeholder.com/120x120" alt="image de profil de {{ $comment->user->name }}"
-                        class="rounded-circle h-50">
-                    <div class="ms-3">
-                        <h6 class="">{{ $comment->user->name }}</h6>
-                        <time datetime="{{ $comment->created_at }}" class="text-muted fs-6">@datetime($comment->created_at)</time>
-                        <p>{{ $comment->content }}</p>
+            <div class="row my-4 mx-2">
+                @foreach ($video->comments as $comment)
+                    <div class="d-flex rounded my-2 align-items-center" style="background: var(--bs-gray-500)">
+                        <img src="{{ Gravatar::get($comment->user->email) }}"
+                            alt="image de profil de {{ $comment->user->name }}" class="img-fluid rounded-circle" style="height: 50px">
+                        <div class="ms-3 p-2">
+                            <h6>{{ $comment->user->name }}</h6>
+                            <time datetime="{{ $comment->created_at }}"
+                                class="text-muted fs-6">@datetime($comment->created_at)</time>
+                            <p>{{ $comment->content }}</p>
+                        </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
     </section>
-
 </x-default-layout>

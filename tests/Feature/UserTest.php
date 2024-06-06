@@ -13,8 +13,6 @@ class UserTest extends TestCase
     use RefreshDatabase;
     public function test_is_a_user_can_be_created_by_an_admin(): void
     {
-        // For see exceptions
-        // $this->withoutExceptionHandling();
         // Create an admin user
         $admin = User::factory()->create([
             'role' => 'admin',
@@ -29,7 +27,7 @@ class UserTest extends TestCase
                 'password_confirmation' => 'Passw0rd!',
                 'role' => 'user',
             ])
-            ->assertRedirect('admin');
+            ->assertRedirect('home');
 
         // Check if the created is added on database
         $this->assertDatabaseHas('users', [

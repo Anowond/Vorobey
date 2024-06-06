@@ -1,5 +1,5 @@
 <x-default-layout title="Editing">
-    <form action="{{ route('admin.user.store') }}" method="post">
+    <form action="{{ route('admin.user.store') }}" method="post" novalidate>
         @csrf
         <div class="border my-2 container p-2 rounded">
             <div class="px-3 my-3">

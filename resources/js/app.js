@@ -5,8 +5,8 @@ Alpine.start();
 window.Alpine = Alpine
 
 let adminButton = document.getElementById('adminButton');
-let content1 = document.querySelector('.tabContent1')
-let content2 = document.querySelector('.tabContent2')
+let content1 = document.getElementById('tabContent1')
+let content2 = document.getElementById('tabContent2')
 
 adminButton.addEventListener('click', () => {
     content1.classList.toggle('hidden');

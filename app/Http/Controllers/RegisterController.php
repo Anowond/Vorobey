@@ -53,4 +53,12 @@ class RegisterController extends Controller
         // Redirection vers /home
         return redirect()->route('home')->withStatus('Inscription Réussie !');
     }
+
+    /**
+     * Affiche la vue des Terms of Policies
+     */
+    public function showTermsOfPolicy(): View
+    {
+        return view('auth.policy');
+    }
 }
