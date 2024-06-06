@@ -56,5 +56,4 @@
                 @endforeach
             </div>
     </section>
-
 </x-default-layout>

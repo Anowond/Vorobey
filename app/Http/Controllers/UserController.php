@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
         // Création de l'utilisateur
         $user = User::create($validated);
-        // Redirection vers la page d'administration avec une varariable de session flash
+        // Redirection vers la page d'administration avec une variable de session flash
         return redirect()->route('admin')->withStatus("User $user->name created successfully ! ");
     }
 

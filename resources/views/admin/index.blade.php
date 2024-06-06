@@ -2,7 +2,7 @@
     <div class="my-3 d-flex justify-content-center">
         <button id="adminButton" class="btn btn-form">Switch to Users</button>
     </div>
-    <div class="tabContent1">
+    <div id="tabContent1">
         <div class="my-4 container text-center" style="color: var(--bs-gray-800)">
             <h1>Videos</h1>
             <p>Administration videos inteface, here, admins can modify and publish/unpublish videos.</p>
@@ -36,7 +36,7 @@
             {{ $videos->links() }}
         </div>
     </div>
-    <div x-data class="tabContent2 hidden">
+    <div id="tabContent2" class="hidden">
         <div class="my-4 container text-center" style="color: var(--bs-gray-800)">
             <h1>Users</h1>
             <p>Users administration inteface, here, admins can modify users.</p>
@@ -55,22 +55,22 @@
             <tbody class="table-group-divider">
                 @foreach ($users as $user)
                     <tr>
-                        <th scope="row" style="color: var(--bs-gray-800)" class="text-center">{{ $user->name }}
+                        <th scope="row" style="color: var(--bs-gray-800)" class="text-center">
+                            {{ $user->name }}
                         </th>
-                        <th scope="row" style="color: var(--bs-gray-800)" class="text-center">{{ $user->role }}
+                        <th scope="row" style="color: var(--bs-gray-800)" class="text-center">
+                            {{ $user->role }}
                         </th>
                         <th scope="row" class="text-center" style="color: var(--bs-gray-800)">
                             <a href="{{ route('admin.user.edit', ['user' => $user]) }}"
                                 style="text-decoration: none; color: var(--bs-gray-800)" class="btn btn-form">Edit</a>
                         </th>
                         <th scope="row" class="text-center" style="color: var(--bs-gray-800)">
-
                             {{-- Boutton de la fenêtre modale --}}
                             <button type="button" class="btn btn-form" data-bs-toggle="modal"
-                                data-bs-target="#deleteUserModal-{{ $user->id }}" @click>
-                                Delete
+                                data-bs-target="#deleteUserModal-{{ $user->id }}">
+                               Delete
                             </button>
-
                             {{-- Fenêtre modale --}}
                             <div class="modal fade" id="deleteUserModal-{{ $user->id }}" tabindex="-1"
                                 aria-labelledby="deleteUserModal-{{ $user->id }}" aria-hidden="true">

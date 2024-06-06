@@ -19,7 +19,6 @@ class VideoAPIService
         $channelUrl = "https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelID&part=snippet,id&order=date&maxResults=50";
         $response = file_get_contents($channelUrl);
         $data = json_decode($response);
-
         $videos = [];
         // Boucle sur la réponse pour refaire une appel API sur les vidéos cete fois-ci pour récupérer
         // des informations supplémentaires, comme une description compléte.
