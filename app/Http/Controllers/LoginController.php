@@ -12,7 +12,9 @@ class LoginController extends Controller
 {
     public function showLoginForm(): View
     {
-        return view('auth.login');
+        return view('auth.login', [
+            'cookie' => json_decode($_COOKIE['laravel_cookie_consent']),
+        ]);
     }
 
     public function login(Request $request)
