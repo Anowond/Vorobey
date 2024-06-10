@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @cookieconsentscripts()
 </head>
 
 <body class="tf2 min-vh-100 d-flex flex-column" x-data="{ isLargeScreen: false }" x-init= "isLargeScreen = window.innerWidth >= 768"
     @resize.window="isLargeScreen = window.innerWidth >= 768">
     <header :class="{ 'sticky-top': !isLargeScreen }">
+
+        @cookieconsentview()
+
         <nav class="navbar w-100 rounded-lg">
             <div class="container-fluid">
                 <a class="navbar-brand tf2 fs-4" href="{{ route('index') }}">Vorobeytf2.com</a>

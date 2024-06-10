@@ -10,7 +10,8 @@
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "spatie/laravel-sitemap": "^7.2",
-        "symfony/var-dumper": "^7.0"
+        "symfony/var-dumper": "^7.0",
+        "whitecube/laravel-cookie-consent": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",

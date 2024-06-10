@@ -17,14 +17,11 @@ class UserRequest extends FormRequest
     {
         // Récupération des rôles possibles en fonction de l'énumération Roles.
         $roles = collect(Roles::cases())->map(fn($roles) => $roles->value)->implode(',');
-        // Récupération de l'instance de lutilsiateur connecté.
-        $user = $this->user();
 
         return [
             'name' => ['required', 'string', 'between:2,255'],
-            'email' => ['required', 'email', Rule::unique('users')->ignore($user)],
-            'password' => [Rule::requiredIf($this->method() == 'POST'),
-                'required',
+            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)],
+            'password' => [Rule::requiredIf($this->isMethod('POST')),
                 'string',
                 'min:8',
                 'regex:/[a-z]/', // Doit contenir au moins une minusucle

@@ -27,7 +27,7 @@ class UserTest extends TestCase
                 'password_confirmation' => 'Passw0rd!',
                 'role' => 'user',
             ])
-            ->assertRedirect('home');
+            ->assertRedirect('admin');
 
         // Check if the created is added on database
         $this->assertDatabaseHas('users', [
@@ -37,7 +37,7 @@ class UserTest extends TestCase
 
     public function test_is_a_user_can_be_updated_by_an_admin(): void
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         // Create an admin user
         $admin = User::factory()->create([
             'role' => 'admin',
